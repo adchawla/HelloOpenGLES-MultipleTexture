@@ -28,9 +28,10 @@ const char* F_SRC = ""
                     "uniform sampler2D activeTexture1;          \n"
                     "uniform sampler2D activeTexture2;          \n"
                     "void main() {                              \n"
-                    "   vec4 textureColor1 = texture2D(activeTexture1, v_TextureCoordinate);    \n"
-                    "   vec4 textureColor2 = texture2D(activeTexture2, v_TextureCoordinate);    \n"
-                    "   gl_FragColor = textureColor1 * textureColor2;                           \n"
+                    "   const vec3 W = vec3(0.2125, 0.1754, 0.0721);                            \n"
+                    "   vec3 irgb = texture2D(activeTexture1, v_TextureCoordinate).rgb;         \n"
+                    "   float luminance = dot(irgb, W);                                         \n"
+                    "   gl_FragColor = vec4(luminance, luminance, luminance, 1.0);              \n"
                     "}";
 
 
